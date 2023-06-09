@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia do Lixo</title>
+    <style>
+        body {
+            background: purple;
+            color: white;
+            font: normal 18pt Arial;
+        }
+    </style>
+</head>
+<body>
+    <audio id="sound" src="alarme.wmv" style:display :none;></audio>
+
+    <div class="container">
+        <h2></h2>
+
+    </div>
+    <script>
+        function definirAlarme(diasSemana, hora, minuto) {
+  var agora = new Date();
+  var alarme = new Date();
+
+  alarme.setHours(hora);
+  alarme.setMinutes(minuto);
+  alarme.setSeconds(0);
+  alarme.setMilliseconds(0);
+
+  var diaAtual = agora.getDay();
+  var diaAlarme = diasSemana.indexOf(diaAtual);
+
+  if (diaAlarme !== -1) {
+    if (agora.getTime() > alarme.getTime()) {
+      alarme.setDate(alarme.getDate() + 7);
+    }
+
+    var diferenca = alarme.getTime() - agora.getTime();
+    setTimeout(function () {
+      console.log("Alarme disparado!");
+      // Executar quando o alarme disparar
+    }, diferenca);
+  } else {
+    console.log("Hoje não é dia de lixo!")
+  }
+  }
+
+
+// Exemplo de uso:
+// Definir alarme para tocar às 17:40 da tarde, no domingo, na terça e na quinta.
+var diasAlarme = [0,2,4]; // Segunda-feira = 1, Quarta-feira = 3
+var horaAlarme = 17;
+var minutoAlarme = 40;
+
+definirAlarme(diasAlarme, horaAlarme, minutoAlarme);
+
+    </script>
+</body>
+</html>
